@@ -1,6 +1,11 @@
+import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
+    kotlin("plugin.serialization") version "2.0.0"
+    id("kotlin-kapt")
+    id("com.google.dagger.hilt.android")
 }
 
 android {
@@ -15,6 +20,10 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        buildConfigField("String", "MOVIE_API_BASE_URL",  "\"${project.properties["MOVIE_API_BASE_URL"]}\"")
+        buildConfigField("String", "MOVIE_API_KEY", "\"${gradleLocalProperties(rootDir, providers).getProperty("MOVIE_API_KEY")}\"")
+        buildConfigField("String", "MOVIE_API_AUTH", "\"${gradleLocalProperties(rootDir, providers).getProperty("MOVIE_API_AUTH")}\"")
     }
 
     buildTypes {
@@ -33,6 +42,9 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+    buildFeatures {
+        buildConfig = true
+    }
 }
 
 dependencies {
@@ -44,4 +56,15 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+
+    // KotlinX Serialization
+    implementation(libs.kotlinx.serialization.json)
+    //Retrofit
+    implementation(libs.retrofit)
+    // Retrofit with Kotlin serialization Converter
+    implementation(libs.retrofit2.kotlinx.serialization.converter)
+    implementation(libs.okhttp)
+    //Hilt
+    implementation(libs.hilt.android)
+    kapt(libs.hilt.android.compiler)
 }
