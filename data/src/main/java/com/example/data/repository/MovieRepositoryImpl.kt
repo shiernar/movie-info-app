@@ -15,7 +15,7 @@ import javax.inject.Inject
 
 class MovieRepositoryImpl @Inject constructor(private val movieRemoteDataSource: MovieRemoteDataSource) : MovieRepository{
 
-    override suspend fun getMoviesList(limit: Int): Flow<Resource<List<MovieModel>>> = flow {
+    override fun getMoviesList(limit: Int): Flow<Resource<List<MovieModel>>> = flow {
         emit(Resource.Loading)
         runCatching {
             val movies = movieRemoteDataSource.getMoviesList(limit)

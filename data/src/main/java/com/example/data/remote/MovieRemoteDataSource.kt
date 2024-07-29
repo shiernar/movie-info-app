@@ -23,7 +23,11 @@ class MovieRemoteDataSource @Inject constructor(
             val response = execute()
             val body = response.body()
             if (response.isSuccessful && body != null) {
-                NetworkResult.Success(body)
+                if(response.code() == 204){
+                    NetworkResult.Error(code = 204, message = response.headers()["MG-message"])
+                } else {
+                    NetworkResult.Success(body)
+                }
             } else {
                 NetworkResult.Error(code = response.code(), message = response.message())
             }
