@@ -1,10 +1,13 @@
 package com.example.data.remote
 
+import com.example.data.BuildConfig
 import com.example.data.remote.dto.MoviesDto
 import com.example.domain.model.NetworkResult
 import com.example.domain.model.Resource
+import okhttp3.OkHttpClient
 import retrofit2.HttpException
 import retrofit2.Response
+import java.util.Date
 import javax.inject.Inject
 
 class MovieRemoteDataSource @Inject constructor(
@@ -29,5 +32,23 @@ class MovieRemoteDataSource @Inject constructor(
         } catch (e: Throwable) {
             NetworkResult.Exception(e)
         }
+    }
+
+    companion object {
+
+        fun movieApiHeadersInterceptor() : OkHttpClient =
+            OkHttpClient.Builder().addInterceptor { chain ->
+                chain.request().newBuilder()
+                    .header("client","PERS_196")
+                    .header("x-api-key", BuildConfig.MOVIE_API_KEY)
+                    .header("authorization", BuildConfig.MOVIE_API_AUTH)
+                    .header("territory","XX")
+                    .header("api-version","v200")
+                    .header("geolocation","LAT;LON")
+                    .header("device-datetime","2018-09-20T13:09:34.927Z")
+                    .build()
+                    .let{ newRequest -> chain.proceed(newRequest) }
+            }.build()
+
     }
 }

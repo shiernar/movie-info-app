@@ -24,6 +24,7 @@ class DataModule {
     fun provideMovieService() : MovieService {
         return Retrofit.Builder()
             .baseUrl(BuildConfig.MOVIE_API_BASE_URL)
+            .client(MovieRemoteDataSource.movieApiHeadersInterceptor())
             .addConverterFactory(
                 Json.asConverterFactory("application/json".toMediaType())
             )
