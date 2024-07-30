@@ -1,7 +1,7 @@
 package com.example.domain.repository
 
 import com.example.domain.model.MovieModel
-import com.example.domain.model.Resource
+import com.example.domain.wrapper.Resource
 import kotlinx.coroutines.flow.Flow
 
 interface MovieRepository {

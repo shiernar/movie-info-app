@@ -1,4 +1,6 @@
-package com.example.domain.model
+package com.example.data.wrapper
+
+import com.example.domain.wrapper.Resource
 
 sealed class NetworkResult<out T> {
     data class Success<T>(val data: T) : NetworkResult<T>()

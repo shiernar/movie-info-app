@@ -2,12 +2,10 @@ package com.example.data.remote
 
 import com.example.data.BuildConfig
 import com.example.data.remote.dto.MoviesDto
-import com.example.domain.model.NetworkResult
-import com.example.domain.model.Resource
+import com.example.data.wrapper.NetworkResult
 import okhttp3.OkHttpClient
 import retrofit2.HttpException
 import retrofit2.Response
-import java.util.Date
 import javax.inject.Inject
 
 class MovieRemoteDataSource @Inject constructor(
