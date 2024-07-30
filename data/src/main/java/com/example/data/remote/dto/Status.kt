@@ -11,7 +11,7 @@ data class Status(
     val deviceDatetimeSent: String,
     @SerialName("device_datetime_used")
     val deviceDatetimeUsed: String,
-    val message: Any?,
+    val message: String?,
     val method: String,
     @SerialName("request_method")
     val requestMethod: String,

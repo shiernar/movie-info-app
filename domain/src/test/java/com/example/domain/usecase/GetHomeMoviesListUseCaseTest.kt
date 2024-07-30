@@ -13,7 +13,7 @@ import org.junit.Test
 import java.util.concurrent.TimeoutException
 import kotlin.random.Random
 
-internal class GetHomeMoviesListUseCaseTest {
+class GetHomeMoviesListUseCaseTest {
 
     private val movieRepository : MovieRepository = mockk()
     private val getHomeMoviesListUseCase = GetHomeMoviesListUseCase(movieRepository)

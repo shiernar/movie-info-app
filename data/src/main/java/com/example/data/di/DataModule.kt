@@ -11,6 +11,7 @@ import dagger.hilt.components.SingletonComponent
 import retrofit2.Retrofit
 import javax.inject.Singleton
 import com.example.data.BuildConfig
+import com.example.data.mapper.MoviesDtoMapper
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import kotlinx.serialization.json.Json
 import okhttp3.MediaType.Companion.toMediaType
@@ -34,8 +35,8 @@ class DataModule {
 
     @Provides
     @Singleton
-    fun provideMovieRepository(movieRemoteDataSource: MovieRemoteDataSource) : MovieRepository {
-        return MovieRepositoryImpl(movieRemoteDataSource)
+    fun provideMovieRepository(movieRemoteDataSource: MovieRemoteDataSource, mapper: MoviesDtoMapper) : MovieRepository {
+        return MovieRepositoryImpl(movieRemoteDataSource, mapper)
     }
 
 }
