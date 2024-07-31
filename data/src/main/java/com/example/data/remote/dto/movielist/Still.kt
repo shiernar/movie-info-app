@@ -1,11 +1,11 @@
-package com.example.data.remote.dto
+package com.example.data.remote.dto.movielist
 
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class Poster(
+data class Still(
     @SerialName("1")
-    val x1: X1
+    val x1: X1X
 )

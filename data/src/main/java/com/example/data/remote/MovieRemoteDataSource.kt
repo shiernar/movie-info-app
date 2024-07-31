@@ -1,7 +1,7 @@
 package com.example.data.remote
 
 import com.example.data.BuildConfig
-import com.example.data.remote.dto.MoviesDto
+import com.example.data.remote.dto.movielist.MoviesDto
 import com.example.data.wrapper.NetworkResult
 import okhttp3.OkHttpClient
 import retrofit2.HttpException

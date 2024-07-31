@@ -1,7 +1,7 @@
 package com.example.data.mapper
 
-import com.example.data.remote.dto.MoviesDto
-import com.example.data.remote.dto.getMoviesDtoSample
+import com.example.data.remote.dto.movielist.MoviesDto
+import com.example.data.remote.dto.movielist.getMoviesDtoSample
 import com.example.domain.model.MovieModel
 import junit.framework.TestCase.assertEquals
 import org.junit.Test

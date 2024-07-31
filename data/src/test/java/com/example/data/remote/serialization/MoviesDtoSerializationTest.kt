@@ -1,8 +1,8 @@
 package com.example.data.remote.serialization
 
-import com.example.data.remote.dto.MoviesDto
-import com.example.data.remote.dto.getMovieJsonStringSample
-import com.example.data.remote.dto.getMoviesDtoSample
+import com.example.data.remote.dto.movielist.MoviesDto
+import com.example.data.remote.dto.movielist.getMovieJsonStringSample
+import com.example.data.remote.dto.movielist.getMoviesDtoSample
 import junit.framework.TestCase.assertEquals
 import kotlinx.serialization.json.Json
 import org.junit.Test

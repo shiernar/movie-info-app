@@ -1,6 +1,6 @@
 package com.example.data.remote
 
-import com.example.data.remote.dto.MoviesDto
+import com.example.data.remote.dto.movielist.MoviesDto
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query
