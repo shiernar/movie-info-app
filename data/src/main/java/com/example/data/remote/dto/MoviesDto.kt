@@ -9,6 +9,10 @@ data class MoviesDto(
     val status: Status
 )
 
+/**
+ * Get a Movie Dto Sample equals to the JSON object returned by getMovieJsonStringSample() .
+ * Used to run tests.
+ */
 fun MoviesDto.Companion.getMoviesDtoSample() = MoviesDto (
     films = listOf(
         Film(
@@ -99,7 +103,7 @@ fun MoviesDto.Companion.getMoviesDtoSample() = MoviesDto (
         )
     ),
     status = Status(
-        count = 11,
+        count = 2,
         state = "OK",
         method = "filmsNowShowing",
         message = null,
@@ -111,6 +115,10 @@ fun MoviesDto.Companion.getMoviesDtoSample() = MoviesDto (
     )
 )
 
+/**
+ * Get a Movie JSON String object equivalent to the MovieDto returned by getMoviesDtoSample() .
+ * Used to run tests.
+ */
 fun MoviesDto.Companion.getMovieJsonStringSample() : String =
  """
         {
