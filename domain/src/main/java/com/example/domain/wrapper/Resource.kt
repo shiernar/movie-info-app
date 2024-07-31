@@ -7,6 +7,7 @@ sealed class Resource<out T> {
     data object Loading: Resource<Nothing>()
     sealed class Error : Resource<Nothing>() {
         data class NetworkError(val code: Int, val message: String?) : Error()
+        data class IOError(val message: String?) : Error()
         data object DataNotFound : Error()
     }
 }

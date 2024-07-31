@@ -4,6 +4,7 @@ import com.example.data.BuildConfig
 import com.example.data.remote.dto.movielist.MoviesDto
 import com.example.data.wrapper.NetworkResult
 import okhttp3.OkHttpClient
+import okio.IOException
 import retrofit2.HttpException
 import retrofit2.Response
 import javax.inject.Inject
@@ -22,15 +23,17 @@ class MovieRemoteDataSource @Inject constructor(
             val body = response.body()
             if (response.isSuccessful && body != null) {
                 if(response.code() == 204){
-                    NetworkResult.Error(code = 204, message = response.headers()["MG-message"])
+                    NetworkResult.Error.NetworkError(code = 204, message = response.headers()["MG-message"])
                 } else {
                     NetworkResult.Success(body)
                 }
             } else {
-                NetworkResult.Error(code = response.code(), message = response.message())
+                NetworkResult.Error.NetworkError(code = response.code(), message = response.message())
             }
         } catch (e: HttpException) {
-            NetworkResult.Error(code = e.code(), message = e.message())
+            NetworkResult.Error.NetworkError(code = e.code(), message = e.message())
+        } catch (e: IOException) {
+            NetworkResult.Error.IOError(message = e.message)
         } catch (e: Throwable) {
             NetworkResult.Exception(e)
         }
