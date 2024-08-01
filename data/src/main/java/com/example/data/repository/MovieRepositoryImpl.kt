@@ -7,6 +7,7 @@ import com.example.domain.model.MovieModel
 import com.example.domain.wrapper.Resource
 import com.example.data.wrapper.toResource
 import com.example.domain.repository.MovieRepository
+import dagger.Provides
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow

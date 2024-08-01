@@ -1,5 +1,6 @@
 package com.example.presentation.home.movielist.screen
 
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -8,6 +9,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.Alignment
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.presentation.home.movielist.viewmodel.MovieListViewModel
 import com.example.presentation.home.movielist.viewobjects.MovieListUiState
@@ -28,10 +30,12 @@ fun MovieListScreenContent(
     uiState: MovieListUiState,
     onMovieItemClicked: (movieId : Int) -> Unit,
 ) {
-    when(uiState) {
-        is MovieListUiState.Error -> Text("Error")
-        is MovieListUiState.Loading -> CircularProgressIndicator()
-        is MovieListUiState.Success -> MovieList(uiState.movies, onMovieItemClicked)
+    Column(verticalArrangement = Arrangement.Center, horizontalAlignment = Alignment.CenterHorizontally) {
+        when (uiState) {
+            is MovieListUiState.Error -> Text("Error")
+            is MovieListUiState.Loading -> CircularProgressIndicator()
+            is MovieListUiState.Success -> MovieList(uiState.movies, onMovieItemClicked)
+        }
     }
 }
 

@@ -12,6 +12,7 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.update
+import timber.log.Timber
 import javax.inject.Inject
 
 @HiltViewModel
@@ -34,7 +35,9 @@ class MovieListViewModel @Inject constructor (
                     when(resource){
                         is Resource.Loading -> MovieListUiState.Loading
                         is Resource.Success -> MovieListUiState.Success(movies = resource.data.map { movieVOMapper.mapFrom(it) })
-                        else -> MovieListUiState.Error
+                        else -> {
+                            MovieListUiState.Error
+                        }
                     }
                 }
             }.launchIn(viewModelScope)

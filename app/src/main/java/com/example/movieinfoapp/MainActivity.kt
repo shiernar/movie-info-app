@@ -1,4 +1,4 @@
-    package com.example.movieinfoapp
+package com.example.movieinfoapp
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -12,7 +12,7 @@ import com.example.movieinfoapp.navigation.MovieInfoAppNavHost
 import com.example.movieinfoapp.ui.theme.MovieInfoAppTheme
 import dagger.hilt.android.AndroidEntryPoint
 
-    @AndroidEntryPoint
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

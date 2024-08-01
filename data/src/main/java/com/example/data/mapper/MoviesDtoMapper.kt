@@ -3,8 +3,9 @@ package com.example.data.mapper
 import com.example.data.remote.dto.movielist.MoviesDto
 import com.example.domain.model.MovieModel
 import com.example.domain.wrapper.Mapper
+import javax.inject.Inject
 
-class MoviesDtoMapper : Mapper<MoviesDto, List<MovieModel>> {
+class MoviesDtoMapper @Inject constructor(): Mapper<MoviesDto, List<MovieModel>> {
     override fun mapFrom(from: MoviesDto): List<MovieModel> {
         return from.films.map { filmDto ->
             MovieModel(

@@ -1,8 +1,9 @@
 plugins {
     id("com.android.library")
     alias(libs.plugins.jetbrains.kotlin.android)
-    id("kotlin-kapt")
+    //id("kotlin-kapt")
     id("com.google.dagger.hilt.android")
+    alias(libs.plugins.ksp)
 }
 
 android {
@@ -44,7 +45,7 @@ dependencies {
 
     //Hilt
     implementation(libs.hilt.android)
-    kapt(libs.hilt.android.compiler)
+    ksp(libs.hilt.android.compiler)
 
     // Testing
     testImplementation(libs.kotlinx.coroutines.test)

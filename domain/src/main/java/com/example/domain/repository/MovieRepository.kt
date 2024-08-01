@@ -2,6 +2,7 @@ package com.example.domain.repository
 
 import com.example.domain.model.MovieModel
 import com.example.domain.wrapper.Resource
+import dagger.Provides
 import kotlinx.coroutines.flow.Flow
 
 interface MovieRepository {
