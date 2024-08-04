@@ -11,7 +11,9 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import kotlinx.serialization.PolymorphicSerializer
 import kotlinx.serialization.json.Json
+import kotlinx.serialization.modules.SerializersModule
 import okhttp3.MediaType.Companion.toMediaType
 import retrofit2.Retrofit
 import javax.inject.Singleton
@@ -27,7 +29,11 @@ class DataModule {
             .baseUrl(BuildConfig.MOVIE_API_BASE_URL)
             .client(MovieRemoteDataSource.movieApiHeadersInterceptor())
             .addConverterFactory(
-                Json.asConverterFactory("application/json".toMediaType())
+                Json {
+                    explicitNulls = false
+                    ignoreUnknownKeys = true
+                    isLenient = true
+                }.asConverterFactory("application/json".toMediaType())
             )
             .build()
             .create(MovieService::class.java)

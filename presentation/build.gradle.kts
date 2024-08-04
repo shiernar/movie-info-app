@@ -2,9 +2,9 @@ plugins {
     id("com.android.library")
     alias(libs.plugins.jetbrains.kotlin.android)
     alias(libs.plugins.compose.compiler)
-    //id("kotlin-kapt")
     id("com.google.dagger.hilt.android")
     alias(libs.plugins.ksp)
+    kotlin("plugin.serialization") version "2.0.0"
 }
 
 android {
@@ -72,5 +72,8 @@ dependencies {
 
     // Timber logger
     implementation(libs.timber)
+
+    // KotlinX Serialization
+    implementation(libs.kotlinx.serialization.json)
 
 }

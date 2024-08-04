@@ -7,6 +7,10 @@ import okhttp3.OkHttpClient
 import okio.IOException
 import retrofit2.HttpException
 import retrofit2.Response
+import timber.log.Timber
+import java.time.ZoneOffset
+import java.time.ZonedDateTime
+import java.time.format.DateTimeFormatter
 import javax.inject.Inject
 
 class MovieRemoteDataSource @Inject constructor(
@@ -50,10 +54,16 @@ class MovieRemoteDataSource @Inject constructor(
                     .header("territory","XX")
                     .header("api-version","v200")
                     .header("geolocation","LAT;LON")
-                    .header("device-datetime","2018-09-20T13:09:34.927Z")
+                    .header("device-datetime", getCurrentDateTime())
                     .build()
                     .let{ newRequest -> chain.proceed(newRequest) }
             }.build()
+
+        private fun getCurrentDateTime(): String {
+            val currentDateTime = ZonedDateTime.now().withZoneSameInstant(ZoneOffset.UTC)
+            val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
+            return currentDateTime.format(formatter)
+        }
 
     }
 }

@@ -28,6 +28,10 @@ class MovieListViewModel @Inject constructor (
     )
     val uiState get() = _uiState.asStateFlow()
 
+    init {
+        fetchMovieListData()
+    }
+
     fun fetchMovieListData(){
         getHomeMoviesListUseCase(movieListLimit)
             .onEach { resource ->
@@ -35,8 +39,12 @@ class MovieListViewModel @Inject constructor (
                     when(resource){
                         is Resource.Loading -> MovieListUiState.Loading
                         is Resource.Success -> MovieListUiState.Success(movies = resource.data.map { movieVOMapper.mapFrom(it) })
-                        else -> {
-                            MovieListUiState.Error
+                        is Resource.Error.DataNotFound -> MovieListUiState.Error.DataNotFound
+                        is Resource.Error.IOError -> MovieListUiState.Error.InternetConnectionError
+                        is Resource.Error.NetworkError -> MovieListUiState.Error.NetworkRequestError(resource.code, resource.message)
+                        is Resource.Exception -> {
+                            Timber.e(resource.e)
+                            MovieListUiState.Error.UnknownError
                         }
                     }
                 }

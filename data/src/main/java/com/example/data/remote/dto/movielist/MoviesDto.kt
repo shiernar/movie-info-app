@@ -36,25 +36,29 @@ fun MoviesDto.Companion.getMoviesDtoSample() = MoviesDto (
             ),
             filmTrailer = "https://trailer.movieglu.com/7772_high.mp4",
             synopsisLong = "As the Third Reich continues its reign of terror, Adolf Hitler is on a quest for the legendary Ark os the Covenenant- resting place of the Ten Commandments- whose supernatural powers, legend says, can wipe out entire armies.\n\nThe U.S. Government turns to Dr. Indiana Jones, for the mission.  Relentlessly pursued by Hitler's henchmen, Indy infiltrartes their massive digging operation in a race against time to discover the Well od the Souls, where the Ark has lain undisturbed for centuries.",
-            images = Images(
-                poster = Poster( x1 = X1(
-                    imageOrientation = "portrait",
-                    region = "UK",
-                    medium = Medium(
-                        filmImage = "https://image.movieglu.com/7772/GBR_007772h0.jpg",
-                        width = 200,
-                        height = 300
+            images = Images.PosterList(
+                poster = listOf(
+                    Poster(
+                        x1 = X1(
+                            imageOrientation = "portrait",
+                            region = "UK",
+                            medium = Medium(
+                                filmImage = "https://image.movieglu.com/7772/GBR_007772h0.jpg",
+                                width = 200,
+                                height = 300
+                            )
+                        )
                     )
-                )
                 ),
-                still = Still( x1 = X1X(
-                    imageOrientation = "landscape",
-                    medium = Medium(
-                        filmImage = "https://image.movieglu.com/7772/007772h2.jpg",
-                        width = 300,
-                        height = 200
-                    ),
-                )
+                still = Still(
+                    x1 = X1X(
+                        imageOrientation = "landscape",
+                        medium = Medium(
+                            filmImage = "https://image.movieglu.com/7772/007772h2.jpg",
+                            width = 300,
+                            height = 200
+                        ),
+                    )
                 )
             )
         ),
@@ -79,25 +83,29 @@ fun MoviesDto.Companion.getMoviesDtoSample() = MoviesDto (
             ),
             filmTrailer = "https://trailer.movieglu.com/184126_uk_high.mp4",
             synopsisLong = "During a manned mission to Mars, Astronaut Mark Watney is presumed dead after a fierce storm and left behind by his crew. But Watney has survived and finds himself stranded and alone on the hostile planet. With only meager supplies, he must draw upon his ingenuity, wit and spirit to subsist and find a way to signal to Earth that he is alive. Millions of miles away, NASA and a team of international scientists work tirelessly to bring \"the Martian\" home, while his crewmates concurrently plot a daring, if not impossible, rescue mission. As these stories of incredible bravery unfold, the world comes together to root for Watney's safe return.",
-            images = Images(
-                poster = Poster( X1 (
-                    imageOrientation = "portrait",
-                    region = "UK",
-                    medium = Medium(
-                        filmImage = "https://image.movieglu.com/184126/GBR_184126h0.jpg",
-                        width = 200,
-                        height = 300
+            images = Images.PosterList(
+                poster = listOf(
+                    Poster(
+                        X1(
+                            imageOrientation = "portrait",
+                            region = "UK",
+                            medium = Medium(
+                                filmImage = "https://image.movieglu.com/184126/GBR_184126h0.jpg",
+                                width = 200,
+                                height = 300
+                            )
+                        )
                     )
-                )
                 ),
-                still = Still( X1X(
-                    imageOrientation = "landscape",
-                    medium = Medium(
-                        filmImage = "https://image.movieglu.com/184126/184126h2.jpg",
-                        width = 300,
-                        height = 200
+                still = Still(
+                    X1X(
+                        imageOrientation = "landscape",
+                        medium = Medium(
+                            filmImage = "https://image.movieglu.com/184126/184126h2.jpg",
+                            width = 300,
+                            height = 200
+                        )
                     )
-                )
                 )
             )
         )

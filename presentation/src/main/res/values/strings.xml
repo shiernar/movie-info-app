@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">presentation</string>
+
+    <!-- Error strings -->
+    <string name="network_request_error">Network request error. Code : </string>
+    <string name="data_not_found_error">Data not found.</string>
+    <string name="internet_connection_error">Could\'nt reach server. Please, check your internet connection.</string>
 </resources>

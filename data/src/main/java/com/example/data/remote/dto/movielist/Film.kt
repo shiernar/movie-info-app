@@ -1,6 +1,7 @@
 package com.example.data.remote.dto.movielist
 
 
+import kotlinx.serialization.Polymorphic
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -14,7 +15,8 @@ data class Film(
     val filmName: String,
     @SerialName("film_trailer")
     val filmTrailer: String?,
-    val images: Images,
+    @SerialName("images")
+    val images: Images?,
     @SerialName("imdb_id")
     val imdbId: Int,
     @SerialName("imdb_title_id")

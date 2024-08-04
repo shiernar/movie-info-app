@@ -5,13 +5,13 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import com.example.presentation.home.navigation.Home
-import com.example.presentation.home.navigation.homeScreenNavigationRoute
+import kotlin.reflect.KClass
 
 @Composable
 fun MovieInfoAppNavHost(
     navHostController: NavHostController,
     modifier: Modifier = Modifier,
-    startDestination: String = homeScreenNavigationRoute
+    startDestination: KClass<out Any> = Home::class.java.kotlin
 ) {
     NavHost(navHostController, startDestination = startDestination, modifier = modifier) {
         Home()

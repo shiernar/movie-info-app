@@ -4,7 +4,6 @@ plugins {
     id("com.android.library")
     alias(libs.plugins.jetbrains.kotlin.android)
     kotlin("plugin.serialization") version "2.0.0"
-    //id("kotlin-kapt")
     id("com.google.dagger.hilt.android")
     alias(libs.plugins.ksp)
 }
@@ -68,4 +67,7 @@ dependencies {
     //Hilt
     implementation(libs.hilt.android)
     ksp(libs.hilt.android.compiler)
+
+    // Timber logger
+    implementation(libs.timber)
 }
