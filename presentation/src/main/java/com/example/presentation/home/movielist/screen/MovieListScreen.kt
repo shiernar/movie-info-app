@@ -12,6 +12,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.example.presentation.home.movielist.components.MovieListItem
 import com.example.presentation.home.movielist.viewmodel.MovieListViewModel
 import com.example.presentation.home.movielist.viewobjects.MovieListUiState
 import com.example.presentation.home.movielist.viewobjects.MovieVO
@@ -53,7 +54,7 @@ fun MovieList(
             items = movies,
             key = { movie -> movie.id }
         ) { movie ->
-            Text(movie.toString())
+            MovieListItem(movieVO = movie, onMovieItemClicked = onMovieItemClicked)
         }
     }
 }

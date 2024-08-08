@@ -24,6 +24,7 @@ navigationCompose = "2.8.0-beta06"
 navigationRuntimeKtx = "2.7.7"
 kspPlugin = "2.0.0-1.0.23"
 timber = "5.0.1"
+uiTextGoogleFonts = "1.6.8"
 
 [libraries]
 androidx-adaptive = { module = "androidx.compose.material3.adaptive:adaptive", version.ref = "adaptive" }
@@ -58,6 +59,7 @@ retrofit2-kotlinx-serialization-converter = { module = "com.jakewharton.retrofit
 androidx-navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigationCompose" }
 androidx-navigation-runtime-ktx = { group = "androidx.navigation", name = "navigation-runtime-ktx", version.ref = "navigationRuntimeKtx" }
 timber = { module = "com.jakewharton.timber:timber", version.ref = "timber" }
+androidx-ui-text-google-fonts = { group = "androidx.compose.ui", name = "ui-text-google-fonts", version.ref = "uiTextGoogleFonts" }
 
 
 [plugins]

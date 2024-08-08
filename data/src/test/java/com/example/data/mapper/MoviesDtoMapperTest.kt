@@ -13,8 +13,8 @@ class MoviesDtoMapperTest {
 
         // Given
         val movieDto = MoviesDto.getMoviesDtoSample()
-        val movie1 = movieDto.films[0].let{ MovieModel(it.filmId, it.filmName, it.releaseDates.first().releaseDate, it.images.poster.x1.medium.filmImage) }
-        val movie2 = movieDto.films[1].let{ MovieModel(it.filmId, it.filmName, it.releaseDates.first().releaseDate, it.images.poster.x1.medium.filmImage) }
+        val movie1 = movieDto.films[0].let{ MovieModel(it.filmId, it.filmName, it.releaseDates.first().releaseDate, "https://abc.jpg") }
+        val movie2 = movieDto.films[1].let{ MovieModel(it.filmId, it.filmName, it.releaseDates.first().releaseDate, "https://bca.jpg") }
         val expectedMovieModelList = listOf(movie1, movie2)
 
         // When

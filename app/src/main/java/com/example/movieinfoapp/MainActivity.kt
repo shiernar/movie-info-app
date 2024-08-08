@@ -8,8 +8,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.rememberNavController
+import com.example.common.ui.theme.AppTheme
 import com.example.movieinfoapp.navigation.MovieInfoAppNavHost
-import com.example.movieinfoapp.ui.theme.MovieInfoAppTheme
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -18,7 +18,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            MovieInfoAppTheme {
+            AppTheme {
                 Surface(modifier = Modifier.fillMaxSize()){
                     val navController = rememberNavController()
                     MovieInfoAppNavHost(navHostController = navController)

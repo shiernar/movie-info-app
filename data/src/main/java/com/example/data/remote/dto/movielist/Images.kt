@@ -14,7 +14,7 @@ sealed class Images {
     data class PosterList(val poster: List<Poster>,val still: Still?) : Images()
     @Serializable
     data class PosterSimple(val poster: Poster,val still: Still?) : Images()
-}
+} 
 
 object ImagesSerializer : JsonContentPolymorphicSerializer<Images>(
     Images::class,
