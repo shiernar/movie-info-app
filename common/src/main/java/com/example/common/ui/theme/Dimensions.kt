@@ -12,8 +12,8 @@ data class AppDimensions(
     val paddingMedium: Dp = 8.dp,
     val paddingLarge: Dp = 24.dp,
     val photoMedium: Dp = 120.dp,
-    val roundedCornerSmall: Dp = 6.dp,
-    val roundedCornerMedium: Dp = 12.dp
+    val roundedCornerSmall: Dp = 16.dp,
+    val roundedCornerMedium: Dp = 24.dp
 )
 
 internal val LocalDimensions = staticCompositionLocalOf { AppDimensions() }
