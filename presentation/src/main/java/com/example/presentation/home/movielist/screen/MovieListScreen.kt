@@ -1,9 +1,11 @@
 package com.example.presentation.home.movielist.screen
 
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -25,9 +27,11 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.common.ui.theme.dimensions
+import com.example.presentation.R
 import com.example.presentation.home.movielist.components.MovieListItem
 import com.example.presentation.home.movielist.viewmodel.MovieListViewModel
 import com.example.presentation.home.movielist.viewobjects.MovieListUiState
@@ -47,16 +51,21 @@ fun MovieListScreen(
 fun MovieListScreenContent(
     uiState: MovieListUiState,
     onMovieItemClicked: (movieId : Int) -> Unit,
+    modifier: Modifier = Modifier
 ) {
     Scaffold(
-        /*topBar = {
-            SearchBar(modifier = Modifier., query = "Search", onQueryChange = {}, onSearch = {}, active = true, onActiveChange = {}) {
+        topBar = {
+            Box(contentAlignment = Alignment.Center, modifier = modifier.padding(MaterialTheme.dimensions.paddingMedium)) {
+                SearchBar( query = stringResource(id = R.string.search_bar_place_holder), onQueryChange = {}, onSearch = {}, active = false, onActiveChange = {}) {
 
+                }
             }
-        }*/
+        }
     ) { scaffoldPadding ->
         Column(
-            modifier = Modifier.fillMaxSize().padding(scaffoldPadding),
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(scaffoldPadding),
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
@@ -80,11 +89,6 @@ fun MovieList(
             key = { movie -> movie.id }
         ) { movie ->
             MovieListItem(movieVO = movie, onMovieItemClicked = onMovieItemClicked)
-            HorizontalDivider(
-                modifier = Modifier.padding(horizontal = MaterialTheme.dimensions.paddingLarge),
-                color = MaterialTheme.colorScheme.primaryContainer,
-                thickness = 1.dp,
-            )
         }
     }
 }

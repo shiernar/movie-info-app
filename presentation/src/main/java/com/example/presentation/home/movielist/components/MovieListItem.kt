@@ -4,11 +4,14 @@ import android.content.res.Configuration
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
@@ -22,15 +25,20 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.drawWithContent
+import androidx.compose.ui.draw.shadow
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.graphics.BlendMode
+import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
-import coil.compose.AsyncImagePainter
-import coil.compose.ImagePainter
 import coil.request.ImageRequest
 import com.example.common.ui.theme.AppTheme
 import com.example.common.ui.theme.dimensions
@@ -45,20 +53,27 @@ fun MovieListItem(modifier: Modifier = Modifier,
     Row(
         modifier = modifier
             .fillMaxWidth()
-            .padding(MaterialTheme.dimensions.paddingMedium)
-            .clickable { onMovieItemClicked(movieVO.id) },
+            .shadow(elevation = MaterialTheme.dimensions.shadowElevationSmall, clip = true)
+            .padding(
+                horizontal = MaterialTheme.dimensions.paddingMedium,
+                vertical = MaterialTheme.dimensions.paddingMediumLarge
+            )
+            .clickable { onMovieItemClicked(movieVO.id) }
+            .padding(MaterialTheme.dimensions.paddingSmall),
         verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.spacedBy(MaterialTheme.dimensions.paddingSmall)
+        horizontalArrangement = Arrangement.spacedBy(MaterialTheme.dimensions.paddingMedium)
     ) {
+
         AsyncImage(
             model = ImageRequest.Builder(LocalContext.current)
                 .data(movieVO.imageUrl)
                 .crossfade(true)
                 .build(),
-            contentDescription = "Movie Picture",
-            contentScale = ContentScale.Inside,
+            contentDescription = stringResource(id = R.string.movie_list_item_content_description),
+            contentScale = ContentScale.FillBounds,
             modifier = Modifier
                 .size(MaterialTheme.dimensions.photoMedium)
+                .aspectRatio(11f / 16f, true)
                 .clip(RoundedCornerShape(MaterialTheme.dimensions.roundedCornerSmall)),
             error = painterResource(id = R.drawable.no_image_error),
             placeholder = painterResource(id = R.drawable.image_place_holder)
@@ -86,7 +101,7 @@ fun MovieListItemPreview(){
                 movieVO = MovieVO(
                     id = 2756,
                     name = "Mad Max",
-                    releaseDate = "2024-08-13",
+                    releaseDate = "Août 2024",
                     imageUrl = "https://image.movieglu.com/2756/GBR_002756h0.jpg"
                 ),
                 onMovieItemClicked = {}

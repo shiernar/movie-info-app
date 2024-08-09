@@ -10,10 +10,12 @@ import androidx.compose.ui.unit.dp
 data class AppDimensions(
     val paddingSmall: Dp = 4.dp,
     val paddingMedium: Dp = 8.dp,
+    val paddingMediumLarge: Dp = 16.dp,
     val paddingLarge: Dp = 24.dp,
-    val photoMedium: Dp = 120.dp,
-    val roundedCornerSmall: Dp = 16.dp,
-    val roundedCornerMedium: Dp = 24.dp
+    val photoMedium: Dp = 160.dp,
+    val roundedCornerSmall: Dp = 8.dp,
+    val roundedCornerMedium: Dp = 12.dp,
+    val shadowElevationSmall: Dp = 4.dp,
 )
 
 internal val LocalDimensions = staticCompositionLocalOf { AppDimensions() }
