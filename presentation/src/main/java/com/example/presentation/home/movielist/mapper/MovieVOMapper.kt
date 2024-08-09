@@ -19,7 +19,7 @@ class MovieVOMapper @Inject constructor(): Mapper<MovieModel, MovieVO> {
 
 fun String.toDateVOFormat() : String = runCatching {
     val inputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
-    val outputFormatter = DateTimeFormatter.ofPattern("MMMM yyyy", Locale.getDefault())
+    val outputFormatter = DateTimeFormatter.ofPattern("MMMM yyyy", Locale.US)
     val date = LocalDate.parse(this, inputFormatter)
     date.format(outputFormatter)
 }.getOrElse { this }
