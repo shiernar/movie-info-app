@@ -2,7 +2,8 @@
     <string name="app_name">presentation</string>
 
     <!-- Movie List -->
-    <string name="search_bar_place_holder">Search</string>
+    <string name="search_bar_place_holder">Search movie</string>
+    <string name="search_icon_content_description">Search Icon</string>
     <string name="movie_list_item_content_description">Movie Picture</string>
 
     <!-- Error strings -->
