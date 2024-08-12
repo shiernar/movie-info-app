@@ -48,6 +48,7 @@ import com.example.presentation.R
 import com.example.presentation.home.movielist.components.MovieListItem
 import com.example.presentation.home.movielist.components.MovieSearchBar
 import com.example.presentation.home.movielist.viewmodel.MovieListViewModel
+import com.example.presentation.home.movielist.viewobjects.MovieListState
 import com.example.presentation.home.movielist.viewobjects.MovieListUiState
 import com.example.presentation.home.movielist.viewobjects.MovieVO
 import kotlinx.coroutines.Job
@@ -60,35 +61,29 @@ fun MovieListScreen(
     viewModel: MovieListViewModel = hiltViewModel()
 ) {
     val uiState by viewModel.uiState.collectAsState()
-    MovieListScreenContent(uiState, onMovieItemClicked)
+    MovieListScreenContent(
+        uiState.movieList,
+        uiState.searchQuery,
+        onMovieItemClicked,
+        onQueryChange = { query -> viewModel.onQueryChange(query) }
+    )
 }
 
 @Composable
 fun MovieListScreenContent(
-    uiState: MovieListUiState,
+    movieListState: MovieListState,
+    searchQuery: String,
     onMovieItemClicked: (movieId : Int) -> Unit,
+    onQueryChange: (String) -> Unit = {},
     modifier: Modifier = Modifier
 ) {
-    val coroutineScope = rememberCoroutineScope()
-    var searchQuery by remember { mutableStateOf("") }
-    var searchJob: Job? by remember { mutableStateOf(null) }
-
     Scaffold(
         modifier = modifier,
         topBar = {
             Box(modifier = Modifier.fillMaxWidth()) {
                 MovieSearchBar(
                     query = searchQuery,
-                    onQueryChange = { newText ->
-                        searchQuery = newText
-                        searchJob?.cancel()
-                        if (newText.isNotBlank()) {
-                            searchJob = coroutineScope.launch {
-                                delay(1000)
-                                searchMovie(newText)
-                            }
-                        }
-                    }
+                    onQueryChange = onQueryChange
                 )
             }
         }
@@ -100,10 +95,10 @@ fun MovieListScreenContent(
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            when (uiState) {
-                is MovieListUiState.Error -> Text("Error : $uiState")
-                is MovieListUiState.Loading -> CircularProgressIndicator()
-                is MovieListUiState.Success -> MovieList(uiState.movies, onMovieItemClicked)
+            when (movieListState) {
+                is MovieListState.Error -> Text("Error : $movieListState")
+                is MovieListState.Loading -> CircularProgressIndicator()
+                is MovieListState.Success -> MovieList(movieListState.movies, onMovieItemClicked)
             }
         }
     }
@@ -122,9 +117,4 @@ fun MovieList(
             MovieListItem(movieVO = movie, onMovieItemClicked = onMovieItemClicked)
         }
     }
-}
-
-fun searchMovie(request: String) {
-    // Logic to search for a movie
-    println("Searching for movie: $request")
 }

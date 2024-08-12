@@ -9,4 +9,6 @@ interface MovieRepository {
 
     fun getMoviesList(limit: Int) : Flow<Resource<List<MovieModel>>>
 
+    fun searchMovie(searchQuery: String) : Flow<Resource<List<MovieModel>>>
+
 }

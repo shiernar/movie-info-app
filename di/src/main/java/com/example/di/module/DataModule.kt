@@ -1,6 +1,7 @@
 package com.example.di.module
 
 import com.example.data.BuildConfig
+import com.example.data.mapper.MovieSearchResultDtoMapper
 import com.example.data.mapper.MoviesDtoMapper
 import com.example.data.remote.MovieRemoteDataSource
 import com.example.data.remote.MovieService
@@ -41,8 +42,8 @@ class DataModule {
 
     @Provides
     @Singleton
-    fun provideMovieRepository(movieRemoteDataSource: MovieRemoteDataSource, mapper: MoviesDtoMapper) : MovieRepository {
-        return MovieRepositoryImpl(movieRemoteDataSource, mapper)
+    fun provideMovieRepository(movieRemoteDataSource: MovieRemoteDataSource, moviesDtoMapper: MoviesDtoMapper, searchMovieDtoMapper: MovieSearchResultDtoMapper) : MovieRepository {
+        return MovieRepositoryImpl(movieRemoteDataSource, moviesDtoMapper, searchMovieDtoMapper)
     }
 
 }

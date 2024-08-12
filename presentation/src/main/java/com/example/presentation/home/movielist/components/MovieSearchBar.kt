@@ -36,7 +36,7 @@ fun MovieSearchBar(
             leadingIcon = { Icon(
                 imageVector = Icons.Filled.Search,
                 contentDescription = stringResource(id = R.string.search_icon_content_description),
-                modifier = Modifier.size(24.dp)
+                modifier = Modifier.size(MaterialTheme.dimensions.iconDefaultSize)
             ) },
             placeholder = { Box(contentAlignment = Alignment.Center) {
                 Text(

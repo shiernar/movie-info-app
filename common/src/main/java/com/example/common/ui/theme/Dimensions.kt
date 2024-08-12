@@ -16,6 +16,7 @@ data class AppDimensions(
     val roundedCornerSmall: Dp = 8.dp,
     val roundedCornerMedium: Dp = 12.dp,
     val shadowElevationSmall: Dp = 4.dp,
+    val iconDefaultSize: Dp = 24.dp
 )
 
 internal val LocalDimensions = staticCompositionLocalOf { AppDimensions() }

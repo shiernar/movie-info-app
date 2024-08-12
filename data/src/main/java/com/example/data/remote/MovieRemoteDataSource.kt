@@ -2,6 +2,7 @@ package com.example.data.remote
 
 import com.example.data.BuildConfig
 import com.example.data.remote.dto.movielist.MoviesDto
+import com.example.data.remote.dto.searchmovie.MovieSearchResultDto
 import com.example.data.wrapper.NetworkResult
 import okhttp3.OkHttpClient
 import okio.IOException
@@ -18,6 +19,8 @@ class MovieRemoteDataSource @Inject constructor(
 ) {
 
     suspend fun getMoviesList(limit: Int) : NetworkResult<MoviesDto> = handleApi { movieService.getMoviesList(limit) }
+
+    suspend fun searchMovie(searchQuery: String) : NetworkResult<MovieSearchResultDto> = handleApi { movieService.searchMovie(searchQuery) }
 
     private suspend fun <T : Any> handleApi(
         execute: suspend () -> Response<T>
