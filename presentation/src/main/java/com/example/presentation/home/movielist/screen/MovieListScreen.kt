@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -74,7 +75,7 @@ fun MovieListScreenContent(
     movieListState: MovieListState,
     searchQuery: String,
     onMovieItemClicked: (movieId : Int) -> Unit,
-    onQueryChange: (String) -> Unit = {},
+    onQueryChange: (String) -> Unit,
     modifier: Modifier = Modifier
 ) {
     Scaffold(
@@ -96,7 +97,7 @@ fun MovieListScreenContent(
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             when (movieListState) {
-                is MovieListState.Error -> Text("Error : $movieListState")
+                is MovieListState.Error -> ErrorMessage(error = movieListState)
                 is MovieListState.Loading -> CircularProgressIndicator()
                 is MovieListState.Success -> MovieList(movieListState.movies, onMovieItemClicked)
             }
@@ -107,9 +108,14 @@ fun MovieListScreenContent(
 @Composable
 fun MovieList(
     movies : List<MovieVO>,
-    onMovieItemClicked: (movieId : Int) -> Unit
+    onMovieItemClicked: (movieId : Int) -> Unit,
+    modifier: Modifier = Modifier
 ) {
-    LazyColumn {
+    LazyColumn(
+        modifier = modifier.fillMaxHeight(),
+        verticalArrangement = Arrangement.Top,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
         items(
             items = movies,
             key = { movie -> movie.id }
@@ -117,4 +123,14 @@ fun MovieList(
             MovieListItem(movieVO = movie, onMovieItemClicked = onMovieItemClicked)
         }
     }
+}
+
+@Composable
+fun ErrorMessage(error: MovieListState.Error){
+    Text(text = when(error) {
+        MovieListState.Error.DataNotFound -> stringResource(R.string.data_not_found_error)
+        MovieListState.Error.InternetConnectionError -> stringResource(R.string.internet_connection_error)
+        is MovieListState.Error.NetworkRequestError -> stringResource(R.string.network_request_error, error.code)
+        MovieListState.Error.UnknownError -> stringResource(R.string.unknown_error)
+    })
 }

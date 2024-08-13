@@ -45,16 +45,18 @@ class MovieListViewModel @Inject constructor (
 
     init {
         viewModelScope.launch {
-            uiState.distinctUntilChangedBy { it.searchQuery }.map { it.searchQuery }.collectLatest { query ->
-                updatingMoviesListJob?.cancel()
-                delay(searchDebounceDelay)
-                updateMovieList(
-                    if (query.isBlank()) {
-                        getHomeMoviesListUseCase(movieListLimit)
-                    } else {
-                        searchMovieUseCase(query)
-                    }
-                )
+            uiState.distinctUntilChangedBy { it.searchQuery }
+                .map { it.searchQuery }
+                .collectLatest { query ->
+                    updatingMoviesListJob?.cancel()
+                    delay(searchDebounceDelay)
+                    updateMovieList(
+                        if (query.length < 2) {
+                            getHomeMoviesListUseCase(movieListLimit)
+                        } else {
+                            searchMovieUseCase(query)
+                        }
+                    )
             }
         }
     }

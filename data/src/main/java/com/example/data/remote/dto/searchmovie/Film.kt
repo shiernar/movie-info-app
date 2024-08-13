@@ -1,6 +1,7 @@
 package com.example.data.remote.dto.searchmovie
 
 
+import com.example.data.remote.dto.movielist.OtherTitles
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -19,7 +20,7 @@ data class Film(
     @SerialName("imdb_title_id")
     val imdbTitleId: String,
     @SerialName("other_titles")
-    val otherTitles: String?,
+    val otherTitles: OtherTitles?,
     @SerialName("release_dates")
     val releaseDates: List<ReleaseDate>,
     val timescount: Int

@@ -26,8 +26,9 @@ class MovieRepositoryImpl @Inject constructor(
             val movies = movieRemoteDataSource.getMoviesList(limit)
             if(movies is NetworkResult.Success && movies.data.films.isEmpty()){
                 emit(Resource.Error.DataNotFound)
+            } else {
+                emit(movies.toResource(mapper = moviesDtoMapper::mapFrom))
             }
-            emit(movies.toResource(mapper = moviesDtoMapper::mapFrom))
         }.onFailure { e -> emit(Resource.Exception(e)) }
     }.flowOn(Dispatchers.IO)
 
@@ -35,10 +36,11 @@ class MovieRepositoryImpl @Inject constructor(
         emit(Resource.Loading)
         runCatching {
             val movies = movieRemoteDataSource.searchMovie(searchQuery)
-            if(movies is NetworkResult.Success && movies.data.films.isEmpty()){
+            if((movies is NetworkResult.Success && movies.data.films.isEmpty())){
                 emit(Resource.Error.DataNotFound)
+            } else {
+                emit(movies.toResource(mapper = movieSearchResultDtoMapper::mapFrom))
             }
-            emit(movies.toResource(mapper = movieSearchResultDtoMapper::mapFrom))
         }.onFailure { e -> emit(Resource.Exception(e)) }
     }.flowOn(Dispatchers.IO)
 
