@@ -59,7 +59,7 @@ fun HomeScreen() {
                                     Text(text = "a")
                                 },
                                 navigationIcon = {
-                                    IconButton(onClick = { navigator.navigateBack() }) {
+                                    IconButton(onClick = { navigator.navigateTo(ListDetailPaneScaffoldRole.List) }) {
                                         Icon(
                                             imageVector = Icons.AutoMirrored.Filled.ArrowBack,
                                             contentDescription = "Arrow Back"

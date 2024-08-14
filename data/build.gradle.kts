@@ -54,6 +54,10 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 
+    // Testing
+    testImplementation(libs.kotlinx.coroutines.test)
+    testImplementation(libs.mockk)
+
     // KotlinX Serialization
     implementation(libs.kotlinx.serialization.json)
 
@@ -70,4 +74,5 @@ dependencies {
 
     // Timber logger
     implementation(libs.timber)
+
 }
